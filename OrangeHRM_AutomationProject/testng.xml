@@ -1,0 +1,22 @@
+<!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd">
+<suite name="OrangeHRM Automation Suite" parallel="false">
+
+    <test name="Login Test">
+        <classes>
+            <class name="com.orangehrm.tests.LoginTest" />
+        </classes>
+    </test>
+
+    <test name="Recruitment Test">
+        <classes>
+            <class name="com.orangehrm.tests.RecruitmentTest" />
+        </classes>
+    </test>
+
+    <test name="Leave Test">
+        <classes>
+            <class name="com.orangehrm.tests.LeaveTest" />
+        </classes>
+    </test>
+
+</suite>
