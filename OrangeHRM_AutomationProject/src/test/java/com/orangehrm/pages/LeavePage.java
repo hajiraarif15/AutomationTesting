@@ -34,7 +34,6 @@ public class LeavePage {
     public void openApply() {
         navigateToLeaveMenu();
         wait.until(ExpectedConditions.elementToBeClickable(applyButtonLink)).click();
-        // wait for form to appear - either leave type dropdown or from date visible
         wait.until(ExpectedConditions.or(
                 ExpectedConditions.visibilityOfElementLocated(leaveTypeDropdown),
                 ExpectedConditions.visibilityOfElementLocated(fromDateField)
