@@ -12,7 +12,7 @@ public class ScreenshotUtil {
             File srcFile = ((TakesScreenshot) driver).getScreenshotAs(OutputType.FILE);
             String path = "target/screenshots/" + scenarioName.replaceAll(" ", "_") + ".png";
             FileUtils.copyFile(srcFile, new File(path));
-            System.out.println("📸 Screenshot saved at: " + path);
+            System.out.println("Screenshot saved at: " + path);
         } catch (IOException e) {
             e.printStackTrace();
         }
