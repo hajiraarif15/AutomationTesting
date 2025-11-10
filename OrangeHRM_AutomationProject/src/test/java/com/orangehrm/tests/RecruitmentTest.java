@@ -26,8 +26,8 @@ public class RecruitmentTest {
         recruitmentPage = new RecruitmentPage(driver);
 
         loginPage.login("Admin", "admin123");
-        Assert.assertTrue(loginPage.isDashboardDisplayed(), "⚠️ Dashboard not visible!");
-        System.out.println("✅ Admin logged in successfully");
+        Assert.assertTrue(loginPage.isDashboardDisplayed(), "Dashboard not visible!");
+        System.out.println("Admin logged in successfully");
     }
 
     @Test(priority = 1, description = "Add candidate")
@@ -40,14 +40,14 @@ public class RecruitmentTest {
                 "test" + timestamp.substring(timestamp.length() - 6) + "@mail.com"
         );
 
-        System.out.println("✅ Candidate added");
+        System.out.println("Candidate added");
     }
 
     @Test(priority = 2, description = "View candidates list")
     public void testViewCandidates() {
         recruitmentPage.openCandidatesPage();
-        Assert.assertTrue(recruitmentPage.isCandidatesTableVisible(), "⚠️ Candidates table not visible!");
-        System.out.println("✅ Candidates list is visible");
+        Assert.assertTrue(recruitmentPage.isCandidatesTableVisible(), "Candidates table not visible!");
+        System.out.println("Candidates list is visible");
     }
 
     @AfterClass
