@@ -18,11 +18,9 @@ public class BaseTest {
         ChromeOptions options = new ChromeOptions();
         options.addArguments("--incognito");
         options.addArguments("--start-maximized");
-        // options.addArguments("--headless=new"); // optional
 
         driver = new ChromeDriver(options);
 
-        // small implicit wait (prefer explicit waits in page objects)
         driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(2));
         driver.manage().timeouts().pageLoadTimeout(Duration.ofSeconds(60));
 
