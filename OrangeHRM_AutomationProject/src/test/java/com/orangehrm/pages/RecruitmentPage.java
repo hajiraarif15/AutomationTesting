@@ -12,7 +12,6 @@ public class RecruitmentPage {
     private WebDriver driver;
     private WebDriverWait wait;
 
-    // Locators
     private By recruitmentMenuLink = By.xpath("//span[text()='Recruitment']");
     private By addCandidateButton = By.xpath("//button[normalize-space()='Add']");
     private By firstNameInput = By.name("firstName");
@@ -31,19 +30,16 @@ public class RecruitmentPage {
         this.wait = new WebDriverWait(driver, Duration.ofSeconds(15));
     }
 
-    // Navigate to Recruitment main page
     public void openRecruitmentPage() {
         wait.until(ExpectedConditions.elementToBeClickable(recruitmentMenuLink));
         driver.findElement(recruitmentMenuLink).click();
     }
 
-    // Click 'Add' button
     public void pressAddCandidate() {
         wait.until(ExpectedConditions.elementToBeClickable(addCandidateButton));
         driver.findElement(addCandidateButton).click();
     }
 
-    // Fill candidate details
     public void typeFirstName(String firstName) {
         wait.until(ExpectedConditions.visibilityOfElementLocated(firstNameInput)).clear();
         driver.findElement(firstNameInput).sendKeys(firstName);
@@ -64,12 +60,10 @@ public class RecruitmentPage {
         driver.findElement(emailInput).sendKeys(email);
     }
 
-    // Save candidate
     public void pressSaveButton() {
         wait.until(ExpectedConditions.elementToBeClickable(saveButton)).click();
     }
 
-    // Add a new candidate
     public void addCandidate(String firstName, String middleName, String lastName, String email) {
         openRecruitmentPage();
         pressAddCandidate();
@@ -80,14 +74,12 @@ public class RecruitmentPage {
         pressSaveButton();
     }
 
-    // Navigate to Candidates list
     public void openCandidatesPage() {
         openRecruitmentPage();
         wait.until(ExpectedConditions.elementToBeClickable(candidatesPageLink));
         driver.findElement(candidatesPageLink).click();
     }
 
-    // Check if candidate table is visible
     public boolean isCandidatesTableVisible() {
         try {
             wait.until(ExpectedConditions.visibilityOfElementLocated(candidatesTable));
@@ -97,7 +89,6 @@ public class RecruitmentPage {
         }
     }
 
-    // Delete first candidate in the list
     public void deleteFirstCandidate() {
         wait.until(ExpectedConditions.elementToBeClickable(deleteIcon));
         driver.findElements(deleteIcon).get(0).click();
@@ -105,13 +96,11 @@ public class RecruitmentPage {
         driver.findElement(confirmDeleteBtn).click();
     }
 
-    // Edit first candidate in the list
     public void editFirstCandidate() {
         wait.until(ExpectedConditions.elementToBeClickable(editIcon));
         driver.findElements(editIcon).get(0).click();
     }
 
-    // Update middle name of candidate
     public void updateCandidateMiddleName(String newMiddleName) {
         wait.until(ExpectedConditions.visibilityOfElementLocated(middleNameInput));
         WebElement middleNameField = driver.findElement(middleNameInput);
