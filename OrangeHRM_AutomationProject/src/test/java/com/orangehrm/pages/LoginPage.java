@@ -40,7 +40,6 @@ public class LoginPage {
         enterUsername(username);
         enterPassword(password);
         clickLogin();
-        // wait for dashboard - helps ensure login completed before next actions
         wait.until(ExpectedConditions.visibilityOfElementLocated(dashboardHeader));
     }
 
