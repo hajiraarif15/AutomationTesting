@@ -14,7 +14,6 @@ public class LeavePage {
     private final By applyButtonLink = By.linkText("Apply"); // friend used this
     private final By myLeaveLink = By.linkText("My Leave");
 
-    // leave form locators
     private final By leaveTypeDropdown = By.xpath("//label[text()='Leave Type']/parent::div/following-sibling::div//div[contains(@class,'oxd-select-text-input')]");
     private final By leaveTypeOptions = By.xpath("//div[@role='option']//span");
     private final By fromDateField = By.xpath("//label[text()='From Date']/parent::div/following-sibling::div//input");
@@ -28,12 +27,10 @@ public class LeavePage {
         this.wait = new WebDriverWait(driver, Duration.ofSeconds(25));
     }
 
-    // navigate to Leave menu (common)
     public void navigateToLeaveMenu() {
         wait.until(ExpectedConditions.elementToBeClickable(leaveMenu)).click();
     }
 
-    // open Apply page
     public void openApply() {
         navigateToLeaveMenu();
         wait.until(ExpectedConditions.elementToBeClickable(applyButtonLink)).click();
@@ -44,7 +41,6 @@ public class LeavePage {
         ));
     }
 
-    // choose leave type by visible text; if text not found, choose first option (fallback)
     public void selectLeaveType(String visibleText) {
         retryClick(leaveTypeDropdown);
         wait.until(ExpectedConditions.visibilityOfAllElementsLocatedBy(leaveTypeOptions));
@@ -55,7 +51,6 @@ public class LeavePage {
                 return;
             }
         }
-        // fallback: choose first non-empty
         if (!options.isEmpty()) {
             safeClick(options.get(0));
         }
@@ -78,11 +73,9 @@ public class LeavePage {
 
     public void clickApplySubmit() {
         retryClick(submitApplyButton);
-        // small wait for submission to process
         sleep(1000);
     }
 
-    // high-level apply
     public void applyLeave(String fromDate, String toDate, String comments, String leaveTypeVisibleText) {
         openApply();
         selectLeaveType(leaveTypeVisibleText);
@@ -92,14 +85,12 @@ public class LeavePage {
         clickApplySubmit();
     }
 
-    // open My Leave page and wait for leave list
     public void openMyLeave() {
         navigateToLeaveMenu();
         wait.until(ExpectedConditions.elementToBeClickable(myLeaveLink)).click();
         wait.until(ExpectedConditions.visibilityOfElementLocated(leaveListTable));
     }
 
-    // simple verification that table is visible and has at least one row
     public boolean isMyLeaveListVisible() {
         try {
             wait.until(ExpectedConditions.visibilityOfElementLocated(leaveListTable));
@@ -110,7 +101,6 @@ public class LeavePage {
         }
     }
 
-    // ---------- helper utilities ----------
     private void clearAndType(WebElement el, String text) {
         try {
             el.clear();
@@ -122,7 +112,6 @@ public class LeavePage {
         }
     }
 
-    // approximate locator fallback for stale element (best-effort)
     private By elLocator(WebElement el) {
         try {
             String tag = el.getTagName();
@@ -145,7 +134,6 @@ public class LeavePage {
                 sleep(300);
             }
         }
-        // final attempt (let exception bubble if fails)
         WebElement el = wait.until(ExpectedConditions.elementToBeClickable(by));
         ((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView(true);", el);
         el.click();
