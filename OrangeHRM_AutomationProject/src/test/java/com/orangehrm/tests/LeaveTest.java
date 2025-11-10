@@ -12,10 +12,8 @@ public class LeaveTest extends BaseTest {
     public void testApplyAndVerifyLeave() {
         LoginPage login = new LoginPage(driver);
         login.login("Admin", "admin123");
-
+        
         LeavePage leave = new LeavePage(driver);
-
-        // Use CAN - Vacation as requested
         String leaveType = "CAN - Vacation";
         String fromDate = "2025-11-10";
         String toDate = "2025-11-10";
@@ -23,10 +21,9 @@ public class LeaveTest extends BaseTest {
 
         leave.applyLeave(fromDate, toDate, comments, leaveType);
 
-        // go to My Leave and verify
         leave.openMyLeave();
         boolean present = leave.isMyLeaveListVisible();
         Assert.assertTrue(present, "Leave entry not visible in My Leave list");
-        System.out.println("✅ Leave applied and visible in My Leave.");
+        System.out.println("Leave applied and visible in My Leave.");
     }
 }
